@@ -1,6 +1,7 @@
-import { LoggedinPage } from './../pages/loggedin/loggedin';
-import { RegisterPage } from './../pages/register/register';
-import { LoginPage } from './../pages/login/login';
+import { ChatPage } from './../pages/chat/chat';
+
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -11,43 +12,51 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 
-const firebaseAuth = {
-  apiKey: "AIzaSyDu1j50I7OsCAwqyrohKvnaVCRXA5uMs8o",
-  authDomain: "test-project-c3725.firebaseapp.com",
-  databaseURL: "https://test-project-c3725.firebaseio.com",
-  projectId: "test-project-c3725",
-  storageBucket: "test-project-c3725.appspot.com",
-  messagingSenderId: "252630992731"
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+
+var config = {
+  apiKey: "AIzaSyDbAvQevAX8CGD5Ce8exjDNIcClgIjDq9I",
+  authDomain: "ionic-chat-starter-fdd95.firebaseapp.com",
+  databaseURL: "https://ionic-chat-starter-fdd95.firebaseio.com",
+  projectId: "ionic-chat-starter-fdd95",
+  storageBucket: "",
+  messagingSenderId: "374822926985"
+};
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '25137954'
+  }
 };
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
-    RegisterPage,
-    LoggedinPage
+    ChatPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseAuth),
-    AngularFireAuthModule
+    AngularFireModule.initializeApp(config),
+
+    CloudModule.forRoot(cloudSettings),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
-    RegisterPage,
-    LoggedinPage
+    ChatPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

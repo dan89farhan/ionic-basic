@@ -1,7 +1,7 @@
-import { RegisterPage } from './../register/register';
-import { LoginPage } from './../login/login';
+import { ChatPage } from './../chat/chat';
 
-import { Component, ViewChild } from '@angular/core';
+
+import { Component} from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 
 @Component({
@@ -10,19 +10,30 @@ import { NavController, AlertController } from 'ionic-angular';
 })
 export class HomePage {
 
-  @ViewChild('username') uname;
-  @ViewChild('password') password;
+  username: string = '';
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
-
-  signIn() {
+  alert(title: string, message: string){
     
-    this.navCtrl.push(LoginPage);
+      let alertBox = this.alertCtrl.create({
+        title: title,
+        subTitle: message,
+        buttons: ['OK']
+      });
+      alertBox.present();
+    
+  
   }
   
-  register() {
-    this.navCtrl.push(RegisterPage);
+  loginUser(){
+    if(/^[a-zA-Z0-9]+$/.test(this.username)){
+      this.navCtrl.push(ChatPage, {
+        username: this.username
+      });
+    }else{
+      this.alert('Error', 'Invalid Username');
+    }
   }
 
 }
