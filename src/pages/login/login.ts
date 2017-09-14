@@ -43,7 +43,7 @@ export class LoginPage {
       })
       .catch(error => {
         console.log('got error ', error);
-        this.alert('Error! '+error);
+        this.alert('Error! ' + error);
       })
     console.log('Would sign in with ', this.user.value, this.password.value);
   }

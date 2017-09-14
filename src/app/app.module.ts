@@ -29,7 +29,7 @@ var config = {
 
 const cloudSettings: CloudSettings = {
   'core': {
-    'app_id': '25137954'
+    'app_id': '888f1e99'
   }
 };
 
